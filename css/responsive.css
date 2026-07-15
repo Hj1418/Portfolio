@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Harsh Jalnekar — Portfolio Responsive Stylesheet (responsive.css)
+   ========================================================================== */
+
+/* ===== Desktop and Tablet Adjustments (Medium screens) ===== */
+@media (max-width: 1024px) {
+  nav {
+    padding: 18px 4vw;
+  }
+  
+  section {
+    padding: 90px 4vw;
+  }
+  
+  .hero {
+    padding: 130px 4vw 60px;
+    gap: 30px;
+  }
+}
+
+/* ===== Tablet & Mobile Navigation Breakpoints ===== */
+@media (max-width: 860px) {
+  .nav-links {
+    display: none; /* Can be enhanced with a hamburger menu later if needed, kept hidden per design requirements */
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .contact-card {
+    padding: 40px 24px;
+  }
+}
+
+/* ===== Mobile Hero and Visual Breakpoints ===== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 120px;
+    text-align: center;
+  }
+  
+  .eyebrow {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-visual {
+    max-width: 360px;
+    margin-top: 20px;
+  }
+  
+  .skill-wrap {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* ===== Small Mobiles (Phone screens) ===== */
+@media (max-width: 480px) {
+  h1.hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .eyebrow-label {
+    font-size: 0.72rem;
+  }
+  
+  h2.section-title {
+    font-size: 1.6rem;
+    margin-bottom: 32px;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 12px 20px;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .fact-card {
+    padding: 20px;
+  }
+  
+  .t-item {
+    padding: 20px 18px;
+  }
+  
+  .pub-card {
+    padding: 20px;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Accessibility: Prefers Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
