@@ -241,17 +241,59 @@ h1.hero-title .grad {
   transform: translateY(-2px);
 }
 
-.hero-visual {
+.hero-portrait {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1;
   max-width: 460px;
+  min-height: 500px;
   margin: 0 auto;
+  display: grid;
+  place-items: center;
 }
 
-.hero-visual svg {
+.portrait-network {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.portrait-network svg {
   width: 100%;
   height: 100%;
+}
+
+.portrait-frame {
+  position: relative;
+  z-index: 1;
+  width: min(75%, 330px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid rgba(69, 217, 198, 0.62);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(69, 217, 198, 0.18), rgba(108, 107, 255, 0.2));
+  box-shadow: 0 0 0 6px rgba(10, 14, 20, 0.82), 0 18px 48px rgba(69, 217, 198, 0.13), 0 12px 34px rgba(108, 107, 255, 0.12);
+}
+
+.portrait-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(108, 107, 255, 0.48);
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(69, 217, 198, 0.12), transparent 34%, transparent 68%, rgba(108, 107, 255, 0.12));
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
 }
 
 .hero-node {

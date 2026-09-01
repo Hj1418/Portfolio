@@ -56,9 +56,14 @@
     justify-content: center;
   }
   
-  .hero-visual {
+  .hero-portrait {
+    min-height: 390px;
     max-width: 360px;
-    margin-top: 20px;
+    margin-top: 8px;
+  }
+
+  .portrait-frame {
+    width: min(68vw, 300px);
   }
   
   .skill-wrap {
@@ -85,6 +90,16 @@
   .btn-primary, .btn-secondary {
     width: 100%;
     padding: 12px 20px;
+  }
+
+  .hero-portrait {
+    min-height: 340px;
+    max-width: 300px;
+  }
+
+  .portrait-frame {
+    width: min(62vw, 240px);
+    border-radius: 16px;
   }
   
   .project-grid {

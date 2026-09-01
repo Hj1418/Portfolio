@@ -11,14 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initSkillGraph() {
   const skillData = [
-    { name: "Languages", skills: ["Java", "Python", "JavaScript", "SQL", "HTML/CSS"] },
-    { name: "Backend", skills: ["Spring Boot", "Spring Security", "Spring Data JPA", "Hibernate", "REST APIs", "JWT", "Maven"] },
-    { name: "Architecture", skills: ["Distributed Systems", "Event-Driven", "Multi-Tenant SaaS", "Clean Architecture", "Domain Modeling"] },
-    { name: "Databases", skills: ["PostgreSQL", "AlloyDB", "Redis", "MongoDB"] },
-    { name: "Messaging", skills: ["RabbitMQ", "MQTT"] },
-    { name: "AI & LLM", skills: ["Ollama", "Prompt Engineering", "LLM Integration", "Semantic Chunking", "LSTM"] },
-    { name: "Security", skills: ["Keycloak", "OAuth2", "RBAC", "AES/RSA Encryption"] },
-    { name: "Cloud & DevOps", skills: ["Docker", "Linux", "Git", "GitHub Actions", "Nginx", "Google Cloud"] }
+    { name: "Backend", skills: ["Java", "Spring Boot", "Spring Framework", "Spring Security", "Spring Data JPA", "Hibernate", "REST APIs"] },
+    { name: "Database", skills: ["PostgreSQL", "SQL", "Database Design", "Multi-Tenant Architecture"] },
+    { name: "Security", skills: ["Keycloak", "OAuth 2.0", "JWT", "RBAC", "AES/RSA Hybrid Encryption"] },
+    { name: "Messaging", skills: ["RabbitMQ", "MQTT", "Asynchronous Processing", "Event-Driven Architecture", "Distributed Systems"] },
+    { name: "DevOps", skills: ["Docker", "Git", "GitHub Actions", "Maven", "Linux", "Nginx"] },
+    { name: "AI & LLM", skills: ["Ollama", "Large Language Models", "Prompt Engineering", "AI Agents", "Google ADK"] },
+    { name: "Additional", skills: ["Python", "Object-Oriented Programming", "Multithreading", "Socket Programming", "Agile Development"] }
   ];
 
   const svg = document.getElementById('skillSvg');
@@ -126,7 +125,7 @@ function initSkillGraph() {
   centerLabel.textContent = "Harsh";
   svg.appendChild(centerLabel);
 
-  // Pre-load Languages details on load
+  // Pre-load Backend details on load
   showSkill(0, skillData);
 }
 
@@ -176,6 +175,14 @@ const publicationsData = [
 
 const certificationsData = [
   {
+    issuer: "Google Cloud",
+    title: "Google Cloud Gen AI Academy – APAC Edition",
+    date: "2026",
+    skills: ["Generative AI", "LLMs", "Google Cloud"],
+    credential: "https://cloud.google.com",
+    featured: true
+  },
+  {
     issuer: "Google",
     title: "Engineer AI Agents with Agent Development Kit (ADK)",
     date: "June 2026",
@@ -184,27 +191,19 @@ const certificationsData = [
     featured: true
   },
   {
+    issuer: "Google Cloud",
+    title: "Vector Search with AlloyDB",
+    date: "2026",
+    skills: ["Vector Search", "AlloyDB", "AI Retrieval"],
+    credential: "https://cloud.google.com/alloydb",
+    featured: true
+  },
+  {
     issuer: "Anthropic",
     title: "Introduction to Agent Skills",
-    date: "May 2026",
-    skills: ["Claude", "Prompt Engineering", "AI Workflows"],
+    date: "2026",
+    skills: ["Agent Skills", "Prompt Engineering", "AI Workflows"],
     credential: "https://anthropic.com",
-    featured: true
-  },
-  {
-    issuer: "LinkedIn",
-    title: "What Is Generative AI?",
-    date: "March 2026",
-    skills: ["Generative AI", "Business AI", "LLMs"],
-    credential: "https://linkedin.com",
-    featured: true
-  },
-  {
-    issuer: "Coursera",
-    title: "Programming for Everybody (Python)",
-    date: "February 2024",
-    skills: ["Python"],
-    credential: "https://coursera.org",
     featured: true
   },
   // Additional certifications (accordion)
