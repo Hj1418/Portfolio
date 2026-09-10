@@ -4,6 +4,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initSkillGraph();
+  initIotPipelineInspector();
+  initProductModal();
   renderCertificationsAndPublications();
   initAccordion();
   initStatsCounters();
@@ -11,13 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initSkillGraph() {
   const skillData = [
-    { name: "Backend", skills: ["Java", "Spring Boot", "Spring Framework", "Spring Security", "Spring Data JPA", "Hibernate", "REST APIs"] },
-    { name: "Database", skills: ["PostgreSQL", "SQL", "Database Design", "Multi-Tenant Architecture"] },
-    { name: "Security", skills: ["Keycloak", "OAuth 2.0", "JWT", "RBAC", "AES/RSA Hybrid Encryption"] },
-    { name: "Messaging", skills: ["RabbitMQ", "MQTT", "Asynchronous Processing", "Event-Driven Architecture", "Distributed Systems"] },
-    { name: "DevOps", skills: ["Docker", "Git", "GitHub Actions", "Maven", "Linux", "Nginx"] },
-    { name: "AI & LLM", skills: ["Ollama", "Large Language Models", "Prompt Engineering", "AI Agents", "Google ADK"] },
-    { name: "Additional", skills: ["Python", "Object-Oriented Programming", "Multithreading", "Socket Programming", "Agile Development"] }
+    { name: "Backend", skills: ["Java", "Spring / Spring Boot", "Python", "PostgreSQL", "REST APIs", "Hibernate", "Spring Data JPA"] },
+    { name: "Distributed Systems", skills: ["Microservices", "RabbitMQ", "MQTT", "Event-Driven Systems", "Asynchronous Processing"] },
+    { name: "Product Engineering", skills: ["SaaS Architecture", "APIs", "Data Pipelines", "Automation", "System Integration"] },
+    { name: "AI", skills: ["AI Tooling", "AI-Assisted Development", "AI Experimentation", "Local LLMs (Ollama)", "Prompt Engineering"] },
+    { name: "Engineering Practices", skills: ["Agile Development", "Testing & Verification", "Production Debugging", "System Integration", "CI/CD Workflows"] }
   ];
 
   const svg = document.getElementById('skillSvg');
@@ -382,3 +382,176 @@ function initStatsCounters() {
   
   counters.forEach(c => observer.observe(c));
 }
+
+/* ===== Interactive IoT / MQTT Data Pipeline Inspector ===== */
+function initIotPipelineInspector() {
+  const pipelineStages = [
+    {
+      id: "iot-devices",
+      step: "01",
+      name: "IoT Devices",
+      tag: "Telemetry Source",
+      desc: "Edge telemetry units, environmental sensors, and microcontrollers recording real-time field data and packaging telemetry frames.",
+      tech: "Sensors, Microcontrollers, Socket I/O",
+      role: "Continuous telemetry capture and serialized packet generation.",
+      constraint: "Handles bandwidth constraints and intermittent edge connectivity."
+    },
+    {
+      id: "mqtt-broker",
+      step: "02",
+      name: "MQTT Broker",
+      tag: "Ingestion Broker",
+      desc: "Lightweight, pub/sub protocol broker maintaining persistent, lightweight socket connections with hundreds of distributed field devices.",
+      tech: "MQTT Protocol, Topic Routing, QoS Policies",
+      role: "Decouples field hardware publishers from internal enterprise processing systems.",
+      constraint: "High concurrent connections with minimal network overhead."
+    },
+    {
+      id: "rabbitmq-queue",
+      step: "03",
+      name: "RabbitMQ Queue",
+      tag: "Durable Message Buffer",
+      desc: "Enterprise message broker providing queue durability, consumer acknowledgments, and backpressure isolation across traffic spikes.",
+      tech: "RabbitMQ, AMQP Exchanges, Durable Queues",
+      role: "Buffers device ingest traffic, guarantees message persistence, and prevents downstream system overload.",
+      constraint: "Guarantees zero message drop during burst periods."
+    },
+    {
+      id: "python-consumer",
+      step: "04",
+      name: "Python Consumer / Script",
+      tag: "Worker Script",
+      desc: "Asynchronous Python worker scripts actively pulling queue batches, unpacking payloads, and coordinating validation pipelines.",
+      tech: "Python 3, Pika / AMQP Client, Non-blocking IO",
+      role: "Handles asynchronous message consumption, deserialization, and pipeline workflow delegation.",
+      constraint: "Reliable error handling and graceful reconnection."
+    },
+    {
+      id: "validation",
+      step: "05",
+      name: "Validation Stage",
+      tag: "Data Integrity",
+      desc: "Rigorous schema verification, bounds checking, timestamp ordering, and anomaly identification before any state changes are accepted.",
+      tech: "Schema Validators, Range Audits, Data Sanity Checks",
+      role: "Guarantees ingested telemetry strictly adheres to protocol definitions.",
+      constraint: "Immediate rejection and logging of corrupted or malformed packets."
+    },
+    {
+      id: "authorization",
+      step: "06",
+      name: "Authorization Stage",
+      tag: "Access Control",
+      desc: "Validates device identities, tenant entitlements, and cryptographic integrity tokens against platform security policies.",
+      tech: "Token Verification, Tenant Isolation, RBAC Rules",
+      role: "Ensures incoming telemetry belongs to a valid, registered, and authorized tenant device.",
+      constraint: "Strict multi-tenant boundary enforcement preventing data cross-talk."
+    },
+    {
+      id: "database-persistence",
+      step: "07",
+      name: "Database Persistence",
+      tag: "PostgreSQL Storage",
+      desc: "Commits cleansed, validated, and authorized telemetry into partitioned, indexed PostgreSQL tables for fast historical retrieval.",
+      tech: "PostgreSQL, Relational Schemas, Indexed Queries",
+      role: "Provides persistent, queryable historical record with strict relational integrity.",
+      constraint: "Connection pool optimization and high write throughput."
+    },
+    {
+      id: "daily-reports",
+      step: "08",
+      name: "Daily Reports & Alerts",
+      tag: "Automation Engine",
+      desc: "Automated cron routines aggregating daily telemetry, computing operational metrics, and dispatching reports to stakeholders.",
+      tech: "Python Schedulers, Notification Dispatchers, Email Services",
+      role: "Generates summary digests and triggers automated alerts to designated recipients.",
+      constraint: "Deterministic execution and clear tabular metrics delivery."
+    }
+  ];
+
+  const nodeBtns = document.querySelectorAll('.pipeline-node-btn');
+  const inspector = document.getElementById('pipelineInspector');
+  if (!inspector || nodeBtns.length === 0) return;
+
+  function updateInspector(stageIndex) {
+    const stage = pipelineStages[stageIndex];
+    if (!stage) return;
+
+    nodeBtns.forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === stageIndex);
+      btn.setAttribute('aria-selected', idx === stageIndex ? 'true' : 'false');
+    });
+
+    inspector.innerHTML = `
+      <div class="inspector-header">
+        <span class="inspector-stage">Stage ${stage.step} — ${stage.tag}</span>
+        <h4 class="inspector-title">${stage.name}</h4>
+        <p class="inspector-desc">${stage.desc}</p>
+      </div>
+      <div class="inspector-details">
+        <div class="inspector-detail-row">
+          <span>Technology:</span>
+          <span>${stage.tech}</span>
+        </div>
+        <div class="inspector-detail-row">
+          <span>Pipeline Role:</span>
+          <span>${stage.role}</span>
+        </div>
+        <div class="inspector-detail-row">
+          <span>Constraint:</span>
+          <span>${stage.constraint}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  nodeBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', () => updateInspector(idx));
+    btn.addEventListener('mouseenter', () => updateInspector(idx));
+    btn.addEventListener('focus', () => updateInspector(idx));
+  });
+
+  // Default to first stage or Python Consumer stage
+  updateInspector(3);
+}
+
+/* ===== Product Case Study Modal (The Grid) ===== */
+function initProductModal() {
+  const openBtn = document.getElementById('openGridModalBtn');
+  const modal = document.getElementById('gridModal');
+  const closeBtn = document.getElementById('closeGridModalBtn');
+
+  if (!openBtn || !modal) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+}
+

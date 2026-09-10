@@ -70,6 +70,21 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
+
+  /* Systems & Pipeline Responsive */
+  .iot-pipeline-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pipeline-nodes-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flagship-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 /* ===== Small Mobiles (Phone screens) ===== */
@@ -120,6 +135,26 @@
   
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pipeline-nodes-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .system-block {
+    padding: 22px 18px;
+  }
+
+  .evolution-wrap {
+    padding: 20px 16px;
+  }
+
+  .flagship-card {
+    padding: 24px 18px;
+  }
+
+  .modal-content {
+    padding: 24px 18px;
   }
 }
 

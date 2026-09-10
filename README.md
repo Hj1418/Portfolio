@@ -1,17 +1,19 @@
-# Harsh Jalnekar — Software Engineering Portfolio
+# Harsh Jalnekar — Backend Engineer · AI Builder · Product Developer
 
-A premium, highly interactive backend software engineer portfolio website. It features an event-driven network canvas background, interactive skills graph, minimal system architecture SVG diagrams, clean timeline layout, and structured engineering project cards detailing technical constraints and learnings.
+A personal engineering and product portfolio website showcasing production backend systems, IoT data pipelines, event-driven architectures, AI developer tooling, and independent products.
 
-Suitable for recruiter scanning and performance-optimized for top product companies.
+Built with a pure static stack (HTML5, Vanilla CSS, JavaScript) featuring an interactive IoT pipeline inspector, RabbitMQ event-driven topologies, Java-to-Python backend evolution, and a product case study for **The Grid** (F1 motorsport community and prediction platform).
 
 ## 🚀 Key Highlights
 
-- **Pure Static Stack:** Simple, dependency-free static website using pure HTML, Vanilla CSS, and JavaScript. Highly compatible with static hosts.
-- **Zero Build Step:** Runs directly in any browser without needing to run `npm install` or compilation scripts.
-- **Modularity:** Stylings and scripts are cleanly separated into specialized modules (`css/`, `js/`) for enterprise maintainability.
-- **Interactive SVG Graph:** Network graph of technical categories that displays details on hover/focus.
-- **Dynamic Particles Background:** High-performance HTML5 Canvas-based floating particle background mimicking network nodes.
-- **SEO & Accessibility Optimized:** Formatted with semantic tags, Schema.org Person JSON-LD, Twitter Cards, OpenGraph meta properties, ARIA labels, and keyboard-navigable elements.
+- **Backend & Production SaaS:** Highlights production microservices, multi-tenant PostgreSQL database modeling, Keycloak/OAuth2/RBAC security, and <code>@Transactional</code> reliability.
+- **Interactive IoT / MQTT Data Pipeline:** Interactive 8-stage data pipeline (IoT Devices &rarr; MQTT &rarr; RabbitMQ &rarr; Python Consumer &rarr; Validation &rarr; Authorization &rarr; PostgreSQL &rarr; Daily Reports &amp; Notifications) with live stage inspection.
+- **Asynchronous & Event-Driven Systems:** Visual RabbitMQ event-driven flows for message consumption, email processing (70% throughput boost), and background synchronization.
+- **Java &rarr; Python Evolution:** Visual narrative demonstrating adaptability across backend ecosystems and modern Python services alongside established Java/Spring systems.
+- **Flagship Product (The Grid):** Deep-dive showcase of an F1 motorsport community, learning platform, and prediction engine (Prediction Bench).
+- **AI Tooling & Personal Workflows:** Showcases ongoing work on an AI Testing Tool and a self-built Personal Job-Tracking Application.
+- **Pure Static Stack & Zero Build Step:** Zero compilation or node dependency requirements; deploys seamlessly to GitHub Pages.
+- **SEO & Accessibility Optimized:** Schema.org Person JSON-LD, semantic landmark elements, ARIA dialog accessibility, and keyboard navigation.
 
 ## 📁 Repository Structure
 

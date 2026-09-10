@@ -132,3 +132,24 @@
     transform: translateY(-8px) rotate(0.5deg);
   }
 }
+
+/* ===== Pipeline Active Pulse ===== */
+.pipeline-node-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: blinkDot 1.8s ease-in-out infinite;
+}
+
+/* ===== Pipeline Flow Pulse ===== */
+.diag-edge.stream {
+  stroke-dasharray: 4 6;
+  animation: dash 3s linear infinite;
+}
+
